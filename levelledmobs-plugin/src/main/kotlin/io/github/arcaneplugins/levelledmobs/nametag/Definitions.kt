@@ -121,7 +121,6 @@ class Definitions{
         private set
     var methodAsVanilla: Method? = null
         private set
-    private var methodEntityTypeByString: Method? = null
     private var methodGetDescriptionId: Method? = null
     private var methodGetNonDefaultValues: Method? = null
     private var methodSynchedEntityDataDefine: Method? = null
@@ -619,13 +618,6 @@ class Definitions{
                 Component::class.java
             )
         }
-
-        // # {"fileName":"EntityType.java","id":"sourceFile"}
-        // java.util.Optional byString(java.lang.String) ->
-        this.methodEntityTypeByString = clazzEntityTypes!!.getDeclaredMethod(
-            NmsMappings.getMapping("methodEntityTypeByString"),
-            String::class.java
-        )
 
         // java.lang.String getDescriptionId() ->
         this.methodGetDescriptionId = clazzEntityTypes!!.getDeclaredMethod(
