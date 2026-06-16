@@ -2,7 +2,6 @@ package io.github.arcaneplugins.levelledmobs.nametag
 
 import io.github.arcaneplugins.levelledmobs.LevelledMobs
 import io.github.arcaneplugins.levelledmobs.misc.VersionInfo
-import io.github.arcaneplugins.levelledmobs.util.Log
 import java.util.regex.Pattern
 import org.bukkit.Bukkit
 import kotlin.text.split
@@ -51,7 +50,6 @@ class ServerVersionInfo {
 
     // preliminary fabric support. not entirely there yet
     private var _isRunningFabric: Boolean? = null
-    private var _isRunningSpigot: Boolean? = null
     private var _isRunningPaper: Boolean? = null
     private var _isRunningFolia: Boolean? = null
     var nmsVersion = "unknown"
@@ -61,8 +59,7 @@ class ServerVersionInfo {
     private fun parseServerVersion(){
         if (isRunningPaper)
             parsePaperVersion()
-
-        if (!isRunningPaper || !isOneTwentyFiveOrNewer)
+        else if (!isRunningPaper || !isOneTwentyFiveOrNewer)
             parseBukkitVersion()
 
         isOneTwentyFiveOrNewer =
@@ -106,7 +103,6 @@ class ServerVersionInfo {
         if (minecraftVersion.isGreaterThanOrEqual("26.1")) return
 
         // example: 26.1-R0.1-SNAPSHOT
-        Log.infTemp("version: ${Bukkit.getServer().javaClass.canonicalName}")
         val nmsRegex = versionPattern.matcher(
             Bukkit.getServer().javaClass.canonicalName
         )
